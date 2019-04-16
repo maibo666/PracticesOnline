@@ -8,7 +8,9 @@ import net.lzzy.practicesonline.R;
 import java.util.Calendar;
 
 /**
- * Created by lzzy_gxy on 2019/4/10.
+ *
+ * @author lzzy_gxy
+ * @date 2019/4/10
  * Description:
  */
 public class SplashFragment extends BaseFragment {

@@ -14,7 +14,9 @@ import java.util.Objects;
 
 
 /**
- * Created by lzzy_gxy on 2019/3/27.
+ *
+ * @author lzzy_gxy
+ * @date 2019/3/27
  * Description:
  */
 public abstract class BaseFragment extends Fragment {
