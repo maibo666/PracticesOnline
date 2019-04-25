@@ -5,6 +5,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -44,5 +45,15 @@ public class ViewUtils {
         if (context instanceof SplashActivity){
             ((SplashActivity)context).gotoMain();
         }
+    }
+
+    public abstract static class AbstractTouchListener implements View.OnTouchListener {
+        @SuppressWarnings("ClickableViewAccessibility")
+        @Override
+        public boolean onTouch(View v, MotionEvent event){
+            return handleTouch(event);
+        }
+
+        protected abstract boolean handleTouch(MotionEvent event);
     }
 }

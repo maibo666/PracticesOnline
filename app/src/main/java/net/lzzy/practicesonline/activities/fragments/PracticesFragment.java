@@ -22,6 +22,7 @@ import net.lzzy.practicesonline.activities.network.PracticeService;
 import net.lzzy.practicesonline.activities.utils.AbstractStaticHandler;
 import net.lzzy.practicesonline.activities.utils.AppUtils;
 import net.lzzy.practicesonline.activities.utils.DateTimeUtils;
+import net.lzzy.practicesonline.activities.utils.ViewUtils;
 import net.lzzy.sqllib.GenericAdapter;
 import net.lzzy.sqllib.ViewHolder;
 
@@ -37,6 +38,8 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 public class PracticesFragment extends BaseFragment {
 
+    private static final int WHAT_PRACTICE_DONE = 0;
+    private static final int WHAT_EXCEPTION = 1;
     private ListView lv;
     private SwipeRefreshLayout swipe;
     private TextView tvHint;
@@ -46,8 +49,6 @@ public class PracticesFragment extends BaseFragment {
     private PracticeFactory factory = PracticeFactory.getInstance();
     private ThreadPoolExecutor executor = AppUtils.getExecutor();
     private DownloadHandler handler = new DownloadHandler(this);
-    private static final int WHAT_PRACTICE_DONE = 0;
-    private static final int WHAT_EXCEPTION = 1;
     private boolean isDeleting=false;
     private float touchX1;
 
@@ -160,7 +161,7 @@ public class PracticesFragment extends BaseFragment {
                 btnDel.setVisibility(View.GONE);
                 btnDel.setOnClickListener(v -> new AlertDialog.Builder(getContext())
                         .setTitle("删除确认")
-                        .setMessage("确定要删除项目吗？")
+                        .setMessage("确定要删除该章节及题目吗？_(:з」∠)_")
                         .setNegativeButton("取消", null)
                         .setPositiveButton("确认", (dialogInterface, i) ->
                         {   isDeleting=false;
@@ -209,6 +210,10 @@ public class PracticesFragment extends BaseFragment {
         }
     }
 
+    private void performItemClick(Practice practice){
+
+    }
+
     private void initViews() {
         lv = find(R.id.fragment_practices_lv);
         TextView tvNone = find(R.id.fragment_practices_tv_none);
@@ -219,6 +224,14 @@ public class PracticesFragment extends BaseFragment {
         tvTime.setText(UserCookies.getInstance().getLastRefreshTime());
         tvHint.setVisibility(View.GONE);
         tvHint.setVisibility(View.GONE);
+        find(R.id.fragment_practices_lv).setOnTouchListener(new ViewUtils.AbstractTouchListener() {
+            @Override
+            protected boolean handleTouch(MotionEvent event) {
+                isDeleting = false;
+                adapter.notifyDataSetChanged();
+                return false;
+            }
+        });
     }
 
     @Override
