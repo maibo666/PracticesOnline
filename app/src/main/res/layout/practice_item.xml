@@ -20,11 +20,11 @@
         tools:text="第一章 软件测试阶段" />
 
     <Button android:id="@+id/practice_item_btn_outlines"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
         style="?android:actionBarTabBarStyle"
         android:focusable="false"
+        android:textColor="@android:color/holo_red_light"
         android:text="要点"/>
 
     <Button android:id="@+id/practice_item_btn_del"
