@@ -112,7 +112,7 @@ public class ApiService {
         return (T) obj;
     }
 
-    public static String okPost(String address, JSONObject json) throws IOException{
+    public static int okPost(String address, JSONObject json) throws IOException{
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
                 json.toString());
         Request request = new Request.Builder()
@@ -120,7 +120,7 @@ public class ApiService {
                 .post(body)
                 .build();
         try(Response response = CLIENT.newCall(request).execute()){
-            return response.body().string();
+            return response.code();
         }
     }
 
