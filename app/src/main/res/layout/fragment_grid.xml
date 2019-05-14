@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <GridView android:id="@+id/fragment_gird_g1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numColumns="5"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="10dp">
+    </GridView>
+    <TextView android:id="@+id/fragment_gird_g2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:background="@drawable/btn_sector_grid"
+        android:gravity="center"
+        style="@style/WhiteBoldText"
+        android:text="图"/>
+</FrameLayout>

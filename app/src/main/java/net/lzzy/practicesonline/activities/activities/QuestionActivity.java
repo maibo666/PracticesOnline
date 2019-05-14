@@ -97,11 +97,11 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     private void redirect() {
-//        List<QuestionResult> results = UserCookies.getInstance().getResultFromCookies(questions);
-//        Intent intent = new Intent(this, ResultActivity.class);
-//        intent.putExtra(EXTRA_PRACTICE_ID, practiceId);
-//        intent.putParcelableArrayListExtra(EXTRA_RESULT, (ArrayList<? extends Parcelable>) results);
-//        startActivityForResult(intent, REQUEST_CODE_RESULT);
+        List<QuestionResult> results = UserCookies.getInstance().getResultFromCookies(questions);
+        Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra(EXTRA_PRACTICE_ID, practiceId);
+        intent.putParcelableArrayListExtra(EXTRA_RESULT, (ArrayList<? extends Parcelable>) results);
+        startActivityForResult(intent, REQUEST_CODE_RESULT);
     }
 
     @Override
