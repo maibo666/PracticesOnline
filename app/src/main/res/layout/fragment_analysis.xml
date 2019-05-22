@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <net.lzzy.practicesonline.activities.fragments.BarChartView
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <net.lzzy.practicesonline.activities.fragments.LineChartView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

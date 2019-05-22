@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.ImageView;
 
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
@@ -20,8 +19,6 @@ import net.lzzy.practicesonline.activities.models.PracticeFactory;
 import net.lzzy.practicesonline.activities.network.DetectWebService;
 import net.lzzy.practicesonline.activities.utils.AppUtils;
 import net.lzzy.practicesonline.activities.utils.ViewUtils;
-
-import java.time.Instant;
 
 /**
  * @author lzzy_gxy on 2019/4/16.
@@ -85,7 +82,7 @@ public class PracticesActivity extends BaseActivity implements PracticesFragment
     private void initViews() {
         SearchView search = findViewById(R.id.bar_title_search);
         search.setQueryHint("请输入关键词搜索");
-        search.setOnQueryTextListener(new ViewUtils.AbstractQueryListener() {
+        search.setOnQueryTextListener(new ViewUtils.AbstractQueryHandler() {
 
             @Override
             public void handleQuery(String kw) {

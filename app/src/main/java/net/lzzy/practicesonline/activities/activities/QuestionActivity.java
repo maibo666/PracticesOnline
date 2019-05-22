@@ -19,6 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import net.lzzy.practicesonline.R;
 import net.lzzy.practicesonline.activities.fragments.QuestionFragment;
+import net.lzzy.practicesonline.activities.models.FavoriteFactory;
 import net.lzzy.practicesonline.activities.models.Question;
 import net.lzzy.practicesonline.activities.models.QuestionFactory;
 import net.lzzy.practicesonline.activities.models.UserCookies;
@@ -40,6 +41,8 @@ import java.util.List;
  * @author Administrator
  */
 public class QuestionActivity extends AppCompatActivity {
+    public static final int REQUEST_CODE = 2;
+    public static final String EXTRA_PRACTICE_ID = "practiceId";
     private String practiceId;
     private int apiId;
     private List<Question> questions;
@@ -54,7 +57,6 @@ public class QuestionActivity extends AppCompatActivity {
     public static final int WHAT_RESPONSE_CODE = 0;
     public static final int WHAT_EXCEPTION = 1;
     public static final String EXTRA_RESULT = "extraResult";
-    public static final String EXTRA_PRACTICE_ID = "extraPracticeId";
     private static final int REQUEST_CODE_RESULT = 0;
 
     @Override
@@ -107,8 +109,34 @@ public class QuestionActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==ResultActivity.RESULT_CODE&&requestCode==REQUEST_CODE&&data!=null){
+            int position=data.getIntExtra(ResultActivity.POSITION,-1);
+            pager.setCurrentItem(position);
+        }
+        if (requestCode == ResultActivity.RESULT_CODE&& resultCode == REQUEST_CODE &&data!=null){
+            String pId=data.getStringExtra(ResultActivity.PRACTICE_ID);
+            if (!pId.isEmpty()){
+                List<Question> questionList=new ArrayList<>();
+                FavoriteFactory factory=FavoriteFactory.getInstance();
+                for (Question question:QuestionFactory.getInstance().getByPractice(pId)){
+                    if (factory.isQuestionStarred(question.getId().toString())){
+                        questionList.add(question);
+                    }
+                }
+                questions.clear();
+                questions.addAll(questionList);
+                initDots();
+                adapter.notifyDataSetChanged();
+                if (questions.size()>0){
+                    pager.setCurrentItem(0);
+                    refreshDots(0);
+                }
+            }
+        }
+
         //todo:返回查看数据（全部 or 收藏）
     }
+
 
     //region 提交成绩
 

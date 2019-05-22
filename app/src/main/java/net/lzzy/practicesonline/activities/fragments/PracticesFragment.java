@@ -403,7 +403,7 @@ public class PracticesFragment extends BaseFragment {
         tvTime.setText(UserCookies.getInstance().getLastRefreshTime());
         tvHint.setVisibility(View.GONE);
         tvHint.setVisibility(View.GONE);
-        find(R.id.fragment_practices_lv).setOnTouchListener(new ViewUtils.AbstractTouchListener() {
+        find(R.id.fragment_practices_lv).setOnTouchListener(new ViewUtils.AbstractTouchHandler() {
             @Override
             public boolean handleTouch(MotionEvent event) {
                 isDeleting = false;

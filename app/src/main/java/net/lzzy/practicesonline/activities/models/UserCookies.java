@@ -74,13 +74,12 @@ public class UserCookies {
     }
 
     public int getReadCount(String questionId) {
-//        return spReadCount.getInt(questionId,0);
-        return 0;
+        return spReadCount.getInt(questionId,0);
     }
 
     public void updateReadCount(String questionId) {
-        int count = getReadCount(questionId) + 1;
-//        spReadCount.edit().putInt(questionId, count).apply();
+        int count=getReadCount(questionId)+1;
+        spReadCount.edit().putInt(questionId,count).apply();
     }
 
     public void changeOptionState(Option option, boolean isChecked, boolean isMulti) {
